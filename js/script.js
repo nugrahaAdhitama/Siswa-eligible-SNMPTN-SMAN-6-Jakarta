@@ -1,10 +1,27 @@
 // bikin function untuk menampilkan daftar siswa
 function allStudents() {
     $.getJSON('data/siswa-eligible.json', function(data){
-        let students = data.eligible
-        $.each(students, function(i, data) {
+        let sciences = data.eligibleIpa
+        $.each(sciences, function(i, data) {
             // tampilkan data siswa IPA
-            $('#daftar-siswa').append(`
+            $('#daftar-siswa-ipa').append(`
+            <tbody id="badan-tabel">
+                <tr>
+                    <th scope="row">`+ data.peringkat +`</th>
+                    <td>`+ data.nama +`</td>
+                    <td>`+ data.kelas +`</td>
+                    <td>`+ data.rata2 +`</td>
+                </tr>
+            </tbody>
+            `);
+        });
+    });
+
+    $.getJSON('data/siswa-eligible.json', function(data){
+        let socials = data.eligibleIps
+        $.each(socials, function(i, data) {
+            // tampilkan data siswa IPS
+            $('#daftar-siswa-ips').append(`
             <tbody id="badan-tabel">
                 <tr>
                     <th scope="row">`+ data.peringkat +`</th>
@@ -32,7 +49,17 @@ $('.nav-link').on('click', function(){
 
     // cek apakah nav-link yang di-klik itu semua siswa
     if( jurusan == 'Seluruh Siswa' ) {
-        $(`#daftar-siswa`).html(`
+        $(`#daftar-siswa-ipa`).html(`
+            <thead>
+                <tr>
+                    <th scope="col">Peringkat</th>
+                    <th scope="col">Nama</th>
+                    <th scope="col">Kelas</th>
+                    <th scope="col">Rata - Rata</th>
+                </tr>
+            </thead>
+        `);
+        $(`#daftar-siswa-ips`).html(`
             <thead>
                 <tr>
                     <th scope="col">Peringkat</th>
@@ -46,36 +73,78 @@ $('.nav-link').on('click', function(){
         return;
     }
 
-    // ganti tampilan kalo yang diklik jurusan IPA atau IPS
-    $.getJSON('data/siswa-eligible.json', function(data){
-        let students = data.eligible;
+    // ganti tampilan kalo yang di-klik jurusan IPA atau IPS
+    $.getJSON('data/siswa-eligible.json',function(data){
+        let sciences = data.eligibleIpa;
         let content = '';
 
-        $.each(students, function(i,data){
-            if( data.jurusan == jurusan ){
+        // bikin untuk yang IPA
+        $.each(sciences, function(i,data){
+            if(data.jurusan == jurusan) {
+                $('#daftar-siswa-ips').addClass('visually-hidden');
+
                 content += `
-                <tbody id="badan-tabel">
-                    <tr>
-                        <th scope="row">`+ data.peringkat +`</th>
-                        <td>`+ data.nama +`</td>
-                        <td>`+ data.kelas +`</td>
-                        <td>`+ data.rata2 +`</td>
-                    </tr>
-                </tbody>
+                        <tbody id="badan-tabel">
+                            <tr>
+                                <th scope="row">`+ data.peringkat +`</th>
+                                <td>`+ data.nama +`</td>
+                                <td>`+ data.kelas +`</td>
+                                <td>`+ data.rata2 +`</td>
+                            </tr>
+                        </tbody>
                 `;
             }
-        });
-        $(`#daftar-siswa`).html(`
-            <thead>
-                <tr>
-                    <th scope="col">Peringkat</th>
-                    <th scope="col">Nama</th>
-                    <th scope="col">Kelas</th>
-                    <th scope="col">Rata - Rata</th>
-                </tr>
-            </thead>
 
-            `+ content +`
+            $('#daftar-siswa-ipa').html(`
+             <thead>
+                 <tr>
+                     <th scope="col">Peringkat</th>
+                     <th scope="col">Nama</th>
+                     <th scope="col">Kelas</th>
+                     <th scope="col">Rata - Rata</th>
+                 </tr>
+             </thead>
+
+             `+ content +`
         `);
-    })
+        });
+    });
+    $.getJSON('data/siswa-eligible.json',function(data){
+        let socials = data.eligibleIps;
+        let content = '';
+
+        // bikin untuk yang IPA
+        $.each(socials, function(i,data){
+            if(data.jurusan == jurusan) {
+                $('#daftar-siswa-ips').removeClass('visually-hidden');
+
+                content += `
+                        <tbody id="badan-tabel">
+                            <tr>
+                                <th scope="row">`+ data.peringkat +`</th>
+                                <td>`+ data.nama +`</td>
+                                <td>`+ data.kelas +`</td>
+                                <td>`+ data.rata2 +`</td>
+                            </tr>
+                        </tbody>
+                `;
+
+                $('#daftar-siswa-ipa').html(``);
+
+                console.log($('#daftar-siswa-ipa'));
+            }
+            $('#daftar-siswa-ips').html(`
+             <thead>
+                 <tr>
+                     <th scope="col">Peringkat</th>
+                     <th scope="col">Nama</th>
+                     <th scope="col">Kelas</th>
+                     <th scope="col">Rata - Rata</th>
+                 </tr>
+             </thead>
+
+             `+ content +`
+        `);
+        });
+    });
 });
