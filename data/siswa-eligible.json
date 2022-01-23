@@ -1,0 +1,44 @@
+{
+    "eligible" : [
+        {
+            "nama": "Faiz Isra Rizqie",
+            "kelas": "XII MIPA 1",
+            "nis": "A18391",
+            "jurusan": "MIPA",
+            "rata2": 91.23,
+            "peringkat": 1
+        },
+        {
+            "nama": "Abigail Febryke Cathryn",
+            "kelas": "XII MIPA 1",
+            "nis": "A18380",
+            "jurusan": "MIPA",
+            "rata2": 90.93,
+            "peringkat": 2
+        },
+        {
+            "nama": "Raudhah Yahya Kuddah",
+            "kelas": "XII MIPA 3",
+            "nis": "A18516",
+            "jurusan": "MIPA",
+            "rata2": 89.43,
+            "peringkat": 3
+        },
+        {
+            "nama": "Sakinah Maulidia Zahrah",
+            "kelas": "XII MIPA 5",
+            "nis": "A18446",
+            "jurusan": "MIPA",
+            "rata2": 89.40,
+            "peringkat": 4
+        },
+        {
+            "nama": "Kayla Cheryl Adelaide Uly",
+            "kelas": "XII IPS 1",
+            "nis": "A18397",
+            "jurusan": "IPS",
+            "rata2": 89.17,
+            "peringkat": 5
+        }
+    ]
+}
