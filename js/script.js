@@ -49,6 +49,7 @@ $('.nav-link').on('click', function(){
 
     // cek apakah nav-link yang di-klik itu semua siswa
     if( jurusan == 'Seluruh Siswa' ) {
+        $(`#daftar-siswa-ips`).removeClass('visually-hidden');
         $(`#daftar-siswa-ipa`).html(`
             <thead>
                 <tr>
