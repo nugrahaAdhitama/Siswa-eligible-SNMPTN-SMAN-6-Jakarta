@@ -83,6 +83,7 @@ $('.nav-link').on('click', function(){
         $.each(sciences, function(i,data){
             if(data.jurusan == jurusan) {
                 $('#daftar-siswa-ips').addClass('visually-hidden');
+                $('#daftar-siswa-ips').removeClass('visually-hidden');
 
                 content += `
                         <tbody id="badan-tabel">
